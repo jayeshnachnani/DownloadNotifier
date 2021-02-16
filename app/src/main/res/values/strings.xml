@@ -13,4 +13,7 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="loading_notification_channel_id" translatable="false">loading_channel</string>
     <string name="loading_notification_channel_name" translatable="true">Loading</string>
+    <string name="filename">Filename:</string>
+    <string name="hardcoded_for_now">Hardcoded for now</string>
+    <string name="status">Status</string>
 </resources>
