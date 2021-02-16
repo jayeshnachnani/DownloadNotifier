@@ -29,6 +29,8 @@ import androidx.core.view.isVisible
 import com.udacity.util.sendNotification
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import timber.log.Timber
+import java.sql.Time
 import kotlin.math.absoluteValue
 
 
@@ -51,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         radioGroup = findViewById(R.id.radioGroup)
         button1 = findViewById(R.id.button1)
+        Timber.plant(Timber.DebugTree())
         notificationManager = getSystemService(
             NotificationManager::class.java
         )
@@ -76,6 +79,9 @@ class MainActivity : AppCompatActivity() {
             // Displaying text of the checked radio button in the form of toast
             Toast.makeText(baseContext, radioButton.text, Toast.LENGTH_SHORT).show()
             fader()
+            Timber.i("download started" )
+            download()
+            Timber.i("After download" )
         }
 
         button1.setOnClickListener {
@@ -103,6 +109,7 @@ class MainActivity : AppCompatActivity() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
             if (downloadID == id) {
+
 
                 Toast.makeText(baseContext, "Download Completed", Toast.LENGTH_SHORT).show();
                 notificationManager.sendNotification("Download Completed",applicationContext)
