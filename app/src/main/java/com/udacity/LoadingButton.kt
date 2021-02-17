@@ -55,10 +55,12 @@ class LoadingButton @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         //Change State based on current state, color, text etc
-        paint.color = Color.BLUE
+        paint.color = Color.BLACK
         //canvas?.drawRect(100.0F,100.0F,30.0F,50.0F,paint)
-        canvas?.drawRect(width/2.toFloat(),height/2.toFloat(),width.toFloat(),height.toFloat(),paint)
-        canvas?.drawText("TimePass",0,7,height/2.toFloat(),height/3.75.toFloat(),paint)
+        //canvas?.drawRect(width/2.toFloat(),height/2.toFloat(),width.toFloat(),height.toFloat(),paint)
+        canvas?.drawText("DOWNLOAD",0,8,width/2.toFloat(),height/3.75.toFloat(),paint)
+        paint.color = Color.MAGENTA
+        canvas?.drawCircle(width/1.20.toFloat(),height/4.toFloat(),height/6.toFloat(),paint)
         //contentDescription
         //canvas?.drawColor(30)
 
