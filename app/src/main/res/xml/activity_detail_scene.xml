@@ -17,10 +17,8 @@
     <Transition
         app:constraintSetStart="@+id/start"
         app:constraintSetEnd="@+id/end"
-        app:duration="2000">
-
-    <OnClick app:targetId="@+id/buttonTest"
-        app:clickAction="toggle"/>
+        app:autoTransition="animateToEnd"
+        app:duration="1000">
     </Transition>
     <!--OnSwipe
         motion:autoTransition="transitionToEnd" /-->

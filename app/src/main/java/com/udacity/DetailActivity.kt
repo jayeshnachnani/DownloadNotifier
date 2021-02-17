@@ -20,7 +20,7 @@ class DetailActivity : AppCompatActivity() {
         button1 = findViewById(R.id.buttonTest)
         //motionLayout = findViewById(R.id.activityDetailMotionLayout)
         //motionLayout.setTransitionDuration(3000)
-        //motionLayout.transitionToStart()
+        //motionLayout.transitionToEnd()
 
 
 

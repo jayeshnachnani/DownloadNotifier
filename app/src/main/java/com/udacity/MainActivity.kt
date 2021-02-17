@@ -63,6 +63,8 @@ class MainActivity : AppCompatActivity() {
         )
 
         registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+        //registerReceiver(receiver, IntentFilter(DownloadManager.STATUS_FAILED.toString()))
+
 
         custom_button.setOnClickListener {
             //custom_button.isClickable = true
@@ -78,6 +80,7 @@ class MainActivity : AppCompatActivity() {
             //this.titleColor = 0x0000ffff.toInt()
             // Displaying text of the checked radio button in the form of toast
             Toast.makeText(baseContext, radioButton.text, Toast.LENGTH_SHORT).show()
+            URL = radioButton.text as String
             fader()
             Timber.i("download started" )
             download()
@@ -118,6 +121,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun download() {
+        //URL = ""
         val request =
             DownloadManager.Request(Uri.parse(URL))
                 .setTitle(getString(R.string.app_name))
@@ -133,8 +137,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val URL =
+        //was
+        //private const val URL =
+        private var URL =
             "https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip"
+        //https://github.com/bumptech/glide/archive/master.zip
+        //https://github.com/square/retrofit/archive/master.zip
         private const val CHANNEL_ID = "channelId"
     }
 
