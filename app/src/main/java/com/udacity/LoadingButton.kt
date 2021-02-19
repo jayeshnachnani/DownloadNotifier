@@ -6,6 +6,7 @@ import android.graphics.*
 import android.graphics.drawable.PaintDrawable
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.content.ContextCompat.getColor
 import kotlin.properties.Delegates
 
 class LoadingButton @JvmOverloads constructor(
@@ -14,6 +15,8 @@ class LoadingButton @JvmOverloads constructor(
     private var widthSize = 0
     private var heightSize = 0
     private var arc = 0F
+    private var progress = 0
+    private var rectangleAnimator = ValueAnimator()
     private var circleAnimator = ValueAnimator()
 
     //private val valueAnimator = ValueAnimator()
@@ -32,10 +35,22 @@ class LoadingButton @JvmOverloads constructor(
                     }
                     start()
                 }
+                rectangleAnimator = ValueAnimator.ofInt(0, width).apply {
+                    duration = 1000
+                    addUpdateListener { valueAnimator ->
+                        progress = animatedValue as Int
+                        valueAnimator.repeatCount = ValueAnimator.INFINITE
+                        //valueAnimator.repeatMode = ValueAnimator.REVERSE
+                        invalidate()
+                    }
+                    start()
+                }
             }
             ButtonState.Completed -> {
                 circleAnimator.end()
+                rectangleAnimator.end()
                 arc = 0F
+                progress = 0
                 //this@LoadingButton.invalidate()
                 invalidate()
                 }
@@ -78,11 +93,26 @@ class LoadingButton @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         //Change State based on current state, color, text etc
+        paint.color = Color.GREEN
+        canvas?.drawRect(
+                0f,
+                0f,
+                width.toFloat(),
+                height.toFloat(), paint)
+
+        paint.color = getColor(context, R.color.colorPrimaryDark)
+        canvas?.drawRect(
+                0f,
+                0f,
+                width.toFloat() * progress /100,
+                height.toFloat(), paint)
+
+
         paint.color = Color.BLACK
         //canvas?.drawRect(100.0F,100.0F,30.0F,50.0F,paint)
         //canvas?.drawRect(width/2.toFloat(),height/2.toFloat(),width.toFloat(),height.toFloat(),paint)
         canvas?.drawText("DOWNLOAD",0,8,width/2.toFloat(),height/3.75.toFloat(),paint)
-        paint.color = Color.MAGENTA
+        paint.color = Color.YELLOW
         //canvas?.drawCircle(width/1.20.toFloat(),height/4.toFloat(),height/6.toFloat(),paint)
         //paint.color = Color.RED
         canvas?.drawArc(width/1.3.toFloat(),(height / 12.toFloat()) , width.toFloat(),
