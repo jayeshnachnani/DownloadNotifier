@@ -60,7 +60,11 @@ class LoadingButton @JvmOverloads constructor(
         //canvas?.drawRect(width/2.toFloat(),height/2.toFloat(),width.toFloat(),height.toFloat(),paint)
         canvas?.drawText("DOWNLOAD",0,8,width/2.toFloat(),height/3.75.toFloat(),paint)
         paint.color = Color.MAGENTA
-        canvas?.drawCircle(width/1.20.toFloat(),height/4.toFloat(),height/6.toFloat(),paint)
+        //canvas?.drawCircle(width/1.20.toFloat(),height/4.toFloat(),height/6.toFloat(),paint)
+        //paint.color = Color.RED
+        canvas?.drawArc(width/1.3.toFloat(),(height / 12.toFloat()) , width.toFloat(),
+                height / 3.toFloat(), 0F,360.toFloat(), true,paint)
+
         //paint.color = Color.YELLOW
         //canvas?.drawArc(width/1.2.toFloat(),height/4.toFloat(),width/1.6.toFloat(),height/3.toFloat(),0.toFloat(),360.toFloat(),true,paint)
         //contentDescription
