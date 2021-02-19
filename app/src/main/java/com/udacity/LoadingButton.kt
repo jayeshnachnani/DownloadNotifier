@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat.getColor
 import kotlin.properties.Delegates
 
 class LoadingButton @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
     private var widthSize = 0
     private var heightSize = 0
@@ -25,7 +25,7 @@ class LoadingButton @JvmOverloads constructor(
         when (new) {
             ButtonState.Loading -> {
                 circleAnimator = ValueAnimator.ofFloat(0F, 360F).apply {
-                    duration  = 1000
+                    duration = 1000
                     addUpdateListener { valueAnimator ->
                         arc = valueAnimator.animatedValue as Float
                         valueAnimator.repeatCount = ValueAnimator.INFINITE
@@ -53,7 +53,7 @@ class LoadingButton @JvmOverloads constructor(
                 progress = 0
                 //this@LoadingButton.invalidate()
                 invalidate()
-                }
+            }
 
         }
     }
@@ -64,7 +64,7 @@ class LoadingButton @JvmOverloads constructor(
         //val il: Int = 12
         //color = setColor(il)
         textSize = 40.0f
-        typeface = Typeface.create( "", Typeface.BOLD)
+        typeface = Typeface.create("", Typeface.BOLD)
     }
 
 
@@ -75,19 +75,9 @@ class LoadingButton @JvmOverloads constructor(
 
     override fun performClick(): Boolean {
         if (super.performClick()) return true
-
-        //fanSpeed = fanSpeed.next()
-        //contentDescription = "test"\
-        //invalidate()
-        //paint.color = Color.GREEN
-        //refreshDrawableState()
-        //canvas?.drawRect(100.0F,100.0F,30.0F,50.0F,paint)
-        //canvas?.drawRect(width/2.toFloat(),height/2.toFloat(),width.toFloat(),height.toFloat(),paint)
-
         invalidate()
         return true
     }
-
 
 
     override fun onDraw(canvas: Canvas?) {
@@ -104,26 +94,24 @@ class LoadingButton @JvmOverloads constructor(
         canvas?.drawRect(
                 0f,
                 0f,
-                width.toFloat() * progress /100,
+                width.toFloat() * progress / 100,
                 height.toFloat(), paint)
 
 
         paint.color = Color.BLACK
         //canvas?.drawRect(100.0F,100.0F,30.0F,50.0F,paint)
         //canvas?.drawRect(width/2.toFloat(),height/2.toFloat(),width.toFloat(),height.toFloat(),paint)
-        canvas?.drawText("DOWNLOAD",0,8,width/2.toFloat(),height/3.75.toFloat(),paint)
-        paint.color = Color.YELLOW
+        canvas?.drawText("DOWNLOAD", 0, 8, width / 2.toFloat(), height / 3.75.toFloat(), paint)
+        paint.color = Color.RED
         //canvas?.drawCircle(width/1.20.toFloat(),height/4.toFloat(),height/6.toFloat(),paint)
         //paint.color = Color.RED
-        canvas?.drawArc(width/1.3.toFloat(),(height / 12.toFloat()) , width.toFloat(),
-                height / 3.toFloat(), 0F,arc, true,paint)
+        canvas?.drawArc(width / 1.3.toFloat(), (height / 12.toFloat()), width.toFloat(),
+                height / 3.toFloat(), 0F, arc, true, paint)
 
         //paint.color = Color.YELLOW
         //canvas?.drawArc(width/1.2.toFloat(),height/4.toFloat(),width/1.6.toFloat(),height/3.toFloat(),0.toFloat(),360.toFloat(),true,paint)
         //contentDescription
         //canvas?.drawColor(30)
-
-
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -135,17 +123,13 @@ class LoadingButton @JvmOverloads constructor(
         val minw: Int = paddingLeft + paddingRight + suggestedMinimumWidth
         val w: Int = resolveSizeAndState(minw, widthMeasureSpec, 1)
         val h: Int = resolveSizeAndState(
-            MeasureSpec.getSize(w),
-            heightMeasureSpec,
-            0
+                MeasureSpec.getSize(w),
+                heightMeasureSpec,
+                0
         )
         widthSize = w
         heightSize = h
         setMeasuredDimension(w, h)
     }
-
-
-
-
 
 }

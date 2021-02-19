@@ -34,8 +34,6 @@ class DetailActivity : AppCompatActivity() {
         motionLayout.setTransitionDuration(3000)
         motionLayout.transitionToEnd()*/
 
-
-
         button1.setOnClickListener {
             val intent = Intent(this.applicationContext, MainActivity::class.java);
             startActivity(intent);

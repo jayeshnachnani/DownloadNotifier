@@ -45,8 +45,6 @@ class MainActivity : AppCompatActivity() {
     var radioGroup: RadioGroup? = null
     lateinit var radioButton: RadioButton
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -149,16 +147,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createChannel(channelId: String, channelName: String) {
-        // TODO: Step 1.6 START create a channel
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(
                 channelId,
                 channelName,
-                // TODO: Step 2.4 change importance
                 NotificationManager.IMPORTANCE_LOW
             )
-            // TODO: Step 2.6 disable badges for this channel
-
             notificationChannel.enableLights(true)
             notificationChannel.lightColor = Color.RED
             notificationChannel.enableVibration(true)
@@ -168,10 +162,6 @@ class MainActivity : AppCompatActivity() {
                 NotificationManager::class.java
             )
             notificationManager.createNotificationChannel(notificationChannel)
-
-
-            // TODO: Step 1.6 END create channel
-
         }
     }
 
@@ -179,13 +169,13 @@ class MainActivity : AppCompatActivity() {
 
         // Fade the view out to completely transparent and then back to completely opaque
 
-        /*val animator = ObjectAnimator.ofFloat(custom_button, View.ALPHA, 0f)
+        val animator = ObjectAnimator.ofFloat(custom_button, View.ALPHA, 0f)
         animator.repeatCount = 1
         animator.repeatMode = ObjectAnimator.REVERSE
         animator.duration = 3000
         //animator.disableViewDuringAnimation(fadeButton)
         animator.start()
-        animator.end()*/
+        animator.end()
     }
 
 }
