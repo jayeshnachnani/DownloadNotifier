@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
             // Displaying text of the checked radio button in the form of toast
             Toast.makeText(baseContext, radioButton.text, Toast.LENGTH_SHORT).show()
             //fader()
-            notificationManager.sendNotification("timepass",applicationContext)
+            notificationManager.sendNotification("timepass",applicationContext, "Success", "test2")
         }
     }
 
@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity() {
 
 
                 Toast.makeText(baseContext, "Download Completed", Toast.LENGTH_SHORT).show();
-                notificationManager.sendNotification("Download Completed",applicationContext)
+                notificationManager.sendNotification("Download Completed",applicationContext,"Success", "test")
             }
         }
     }

@@ -15,5 +15,7 @@
     <string name="loading_notification_channel_name" translatable="true">Loading</string>
     <string name="filename">Filename:</string>
     <string name="hardcoded_for_now">Hardcoded for now</string>
+    <string name="download_detail">Download Detail</string>
+
     <string name="status">Status</string>
 </resources>

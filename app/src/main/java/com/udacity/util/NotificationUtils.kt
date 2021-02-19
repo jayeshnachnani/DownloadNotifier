@@ -27,11 +27,13 @@ private val FLAGS = 0
  *
  * @param context, activity context.
  */
-fun NotificationManager.sendNotification(messageBody: String, applicationContext: Context) {
+fun NotificationManager.sendNotification(messageBody: String, applicationContext: Context, status: String, url: String) {
     // Create the content intent for the notification, which launches
     // this activity
     // TODO: Step 1.11 create intent
     val contentIntent = Intent(applicationContext, DetailActivity::class.java)
+            .putExtra("status", status)
+            .putExtra("url",url)
     // TODO: Step 1.12 create PendingIntent
     val contentPendingIntent = PendingIntent.getActivity(
         applicationContext,
@@ -68,8 +70,7 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
 
         // TODO: Step 1.3 set title, text and icon to builder
         .setSmallIcon(R.drawable.sample)
-        .setContentTitle(applicationContext
-            .getString(R.string.notification_title))
+        .setContentTitle(applicationContext.getString(R.string.notification_title))
         .setContentText(messageBody)
 
         // TODO: Step 1.13 set content intent
@@ -81,11 +82,11 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         .setLargeIcon(loaderImage)
 
         // TODO: Step 2.3 add snooze action
-        /*.addAction(
+        .addAction(
             R.drawable.sample,
-            applicationContext.getString(R.string.snooze),
-            snoozePendingIntent
-        )*/
+            applicationContext.getString(R.string.download_detail),
+            contentPendingIntent
+        )
 
         // TODO: Step 2.5 set priority
         .setPriority(NotificationCompat.PRIORITY_HIGH)
