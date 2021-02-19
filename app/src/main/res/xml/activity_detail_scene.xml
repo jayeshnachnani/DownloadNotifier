@@ -4,21 +4,42 @@
     xmlns:motion="http://schemas.android.com/tools">
 
     <ConstraintSet android:id="@+id/start">
-        <Constraint android:id="@+id/imageView"
-            android:alpha="0.5"/>
+        <Constraint android:id="@+id/buttonTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#1AB321"
+            android:text="OK"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            android:alpha="0.1" />
 
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
-        <Constraint android:id="@+id/imageView" android:alpha="1.0"
+        <Constraint android:id="@+id/buttonTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#1AB321"
+            android:text="OK"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            android:alpha="1.0"
             />
     </ConstraintSet>
 
     <Transition
         app:constraintSetStart="@+id/start"
         app:constraintSetEnd="@+id/end"
-        app:autoTransition="animateToEnd"
-        app:duration="1000">
+        app:duration="3000"
+        app:autoTransition="animateToEnd">
     </Transition>
     <!--OnSwipe
         motion:autoTransition="transitionToEnd" /-->

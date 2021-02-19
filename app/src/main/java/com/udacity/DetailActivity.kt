@@ -18,9 +18,9 @@ class DetailActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         button1 = findViewById(R.id.buttonTest)
-        //motionLayout = findViewById(R.id.activityDetailMotionLayout)
-        //motionLayout.setTransitionDuration(3000)
-        //motionLayout.transitionToEnd()
+        /*motionLayout = findViewById(R.id.activityDetailMotionLayout)
+        motionLayout.setTransitionDuration(3000)
+        motionLayout.transitionToEnd()*/
 
 
 

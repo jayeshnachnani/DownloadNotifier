@@ -50,7 +50,7 @@
         android:id="@+id/buttonTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#8E8A8A"
+        android:background="#1AB321"
         android:text="OK"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.1" />
 
-    <ImageView
+    <!--ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,6 +67,6 @@
         app:layout_constraintEnd_toEndOf="@+id/include"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"
-        app:srcCompat="@drawable/sample" />
+        app:srcCompat="@drawable/sample" /-->
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
