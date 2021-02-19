@@ -13,11 +13,34 @@ class LoadingButton @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
     private var widthSize = 0
     private var heightSize = 0
+    private var arc = 0F
+    private var circleAnimator = ValueAnimator()
 
-    private val valueAnimator = ValueAnimator()
+    //private val valueAnimator = ValueAnimator()
 
-    private var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { p, old, new ->
+    var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { p, old, new ->
+        when (new) {
+            ButtonState.Loading -> {
+                circleAnimator = ValueAnimator.ofFloat(0F, 360F).apply {
+                    duration  = 1000
+                    addUpdateListener { valueAnimator ->
+                        arc = valueAnimator.animatedValue as Float
+                        valueAnimator.repeatCount = ValueAnimator.INFINITE
+                        //valueAnimator.repeatMode = ValueAnimator.REVERSE
+                        //this@LoadingButton.invalidate()
+                        invalidate()
+                    }
+                    start()
+                }
+            }
+            ButtonState.Completed -> {
+                circleAnimator.end()
+                arc = 0F
+                //this@LoadingButton.invalidate()
+                invalidate()
+                }
 
+        }
     }
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -46,7 +69,7 @@ class LoadingButton @JvmOverloads constructor(
         //canvas?.drawRect(100.0F,100.0F,30.0F,50.0F,paint)
         //canvas?.drawRect(width/2.toFloat(),height/2.toFloat(),width.toFloat(),height.toFloat(),paint)
 
-        //invalidate()
+        invalidate()
         return true
     }
 
@@ -63,7 +86,7 @@ class LoadingButton @JvmOverloads constructor(
         //canvas?.drawCircle(width/1.20.toFloat(),height/4.toFloat(),height/6.toFloat(),paint)
         //paint.color = Color.RED
         canvas?.drawArc(width/1.3.toFloat(),(height / 12.toFloat()) , width.toFloat(),
-                height / 3.toFloat(), 0F,360.toFloat(), true,paint)
+                height / 3.toFloat(), 0F,arc, true,paint)
 
         //paint.color = Color.YELLOW
         //canvas?.drawArc(width/1.2.toFloat(),height/4.toFloat(),width/1.6.toFloat(),height/3.toFloat(),0.toFloat(),360.toFloat(),true,paint)
@@ -90,6 +113,8 @@ class LoadingButton @JvmOverloads constructor(
         heightSize = h
         setMeasuredDimension(w, h)
     }
+
+
 
 
 
