@@ -102,7 +102,7 @@ class LoadingButton @JvmOverloads constructor(
         //canvas?.drawRect(100.0F,100.0F,30.0F,50.0F,paint)
         //canvas?.drawRect(width/2.toFloat(),height/2.toFloat(),width.toFloat(),height.toFloat(),paint)
         canvas?.drawText("DOWNLOAD", 0, 8, width / 2.toFloat(), height / 3.75.toFloat(), paint)
-        paint.color = Color.RED
+        paint.color = Color.YELLOW
         //canvas?.drawCircle(width/1.20.toFloat(),height/4.toFloat(),height/6.toFloat(),paint)
         //paint.color = Color.RED
         canvas?.drawArc(width / 1.3.toFloat(), (height / 12.toFloat()), width.toFloat(),
