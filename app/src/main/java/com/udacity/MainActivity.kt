@@ -44,6 +44,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var button1: Button
     var radioGroup: RadioGroup? = null
     lateinit var radioButton: RadioButton
+    lateinit var downloadManager: DownloadManager
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,12 +118,18 @@ class MainActivity : AppCompatActivity() {
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
+
             if (downloadID == id) {
-
-
+                val query = id?.let { DownloadManager.Query().setFilterById(it) }
+                val cursor = downloadManager.query(query)
+                cursor.moveToFirst()
+                val status = when (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))) {
+                    DownloadManager.STATUS_SUCCESSFUL -> "SUCCESS"
+                    else -> "FAILED"
+                }
                 Toast.makeText(baseContext, "Download Completed", Toast.LENGTH_SHORT).show()
                 custom_button.buttonState = ButtonState.Completed
-                notificationManager.sendNotification("Download Completed",applicationContext,"Success", "test")
+                notificationManager.sendNotification("Download Completed",applicationContext,status,radioButton.text.toString())
             }
         }
     }
@@ -136,7 +144,7 @@ class MainActivity : AppCompatActivity() {
                 .setAllowedOverMetered(true)
                 .setAllowedOverRoaming(true)
 
-        val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+        downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
         downloadID =
             downloadManager.enqueue(request)// enqueue puts the download request in the queue.
         registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
