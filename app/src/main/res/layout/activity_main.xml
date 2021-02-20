@@ -45,7 +45,7 @@
         android:layout_height="60dp"
         android:background="#C51D1D"
         android:text="Start Button"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
