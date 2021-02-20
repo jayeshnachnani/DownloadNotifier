@@ -71,19 +71,25 @@ class MainActivity : AppCompatActivity() {
             //custom_button.isInvisible = true
             //download()
             val selectedOption: Int = radioGroup!!.checkedRadioButtonId
-            // Assigning id of the checked radio button
-            radioButton = findViewById(selectedOption)
-            //it.setBackgroundColor(0xffffff00.toInt())
-            //it.animate().start()
-            //this.titleColor = 0x0000ffff.toInt()
-            // Displaying text of the checked radio button in the form of toast
-            Toast.makeText(baseContext, radioButton.text, Toast.LENGTH_SHORT).show()
-            URL = radioButton.text as String
-            //fader()
-            custom_button.buttonState = ButtonState.Loading
-            Timber.i("download started" )
-            download()
-            Timber.i("After download" )
+
+            if (selectedOption > 0) {
+                // Assigning id of the checked radio button
+                radioButton = findViewById(selectedOption)!!
+                //it.setBackgroundColor(0xffffff00.toInt())
+                //it.animate().start()
+                //this.titleColor = 0x0000ffff.toInt()
+                // Displaying text of the checked radio button in the form of toast
+                Toast.makeText(baseContext, radioButton.text, Toast.LENGTH_SHORT).show()
+                URL = radioButton.text as String
+                //fader()
+                custom_button.buttonState = ButtonState.Loading
+                Timber.i("download started")
+                download()
+                Timber.i("After download")
+            }
+            else{
+                Toast.makeText(baseContext, getString(R.string.select_repository), Toast.LENGTH_SHORT).show()
+            }
         }
 
         button1.setOnClickListener {
