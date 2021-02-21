@@ -19,8 +19,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:buttonColor1="#ff3a13"
-        app:buttonColor2="#1752dc"
+        app:buttonColor="#adb3b3"
+        app:textColor="#010206"
 
         />
 
