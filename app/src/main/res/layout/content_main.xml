@@ -18,7 +18,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:buttonColor1="#ff3a13"
+        app:buttonColor2="#1752dc"
+
+        />
 
     <!--Button
         android:id="@+id/button"

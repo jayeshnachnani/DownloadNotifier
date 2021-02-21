@@ -1,5 +1,6 @@
 package com.udacity
 
+//import android.R
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
@@ -9,7 +10,9 @@ import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat.getColor
+import androidx.core.content.withStyledAttributes
 import kotlin.properties.Delegates
+
 
 class LoadingButton @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -18,6 +21,8 @@ class LoadingButton @JvmOverloads constructor(
     private var heightSize = 0
     private var arc = 0F
     private var progress = 0
+    private var buttonClickedColor = 0
+    private var buttonCompletedColor = 0
     private var rectangleAnimator = ValueAnimator()
     private var circleAnimator = ValueAnimator()
 
@@ -30,7 +35,8 @@ class LoadingButton @JvmOverloads constructor(
                     addUpdateListener { valueAnimator ->
                         arc = valueAnimator.animatedValue as Float
                         valueAnimator.repeatCount = ValueAnimator.INFINITE
-                        //this@LoadingButton.invalidate()
+                        this@LoadingButton.setBackgroundColor(buttonClickedColor)
+                        this@LoadingButton.invalidate()
                         invalidate()
                     }
                     start()
@@ -40,6 +46,8 @@ class LoadingButton @JvmOverloads constructor(
                     addUpdateListener { valueAnimator ->
                         progress = animatedValue as Int
                         valueAnimator.repeatCount = ValueAnimator.INFINITE
+                        this@LoadingButton.setBackgroundColor(buttonClickedColor)
+                        this@LoadingButton.invalidate()
                         invalidate()
                     }
                     start()
@@ -48,9 +56,10 @@ class LoadingButton @JvmOverloads constructor(
             ButtonState.Completed -> {
                 circleAnimator.end()
                 rectangleAnimator.end()
+                this@LoadingButton.setBackgroundColor(buttonCompletedColor)
                 arc = 0F
                 progress = 0
-                //this@LoadingButton.invalidate()
+                this@LoadingButton.invalidate()
                 invalidate()
             }
 
@@ -67,6 +76,11 @@ class LoadingButton @JvmOverloads constructor(
 
     init {
         isClickable = true
+        context.withStyledAttributes(attrs, R.styleable.LoadingButton) {
+            buttonClickedColor = getColor(R.styleable.LoadingButton_buttonColor1, 0)
+            buttonCompletedColor = getColor(R.styleable.LoadingButton_buttonColor2, 0)
+
+        }
 
     }
 
@@ -81,6 +95,7 @@ class LoadingButton @JvmOverloads constructor(
         super.onDraw(canvas)
         //Change State based on current state, color, text etc
         paint.color = Color.GREEN
+        paint.color = buttonClickedColor
         canvas?.drawRect(
                 0f,
                 0f,
